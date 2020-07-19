@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+      layout:decorator="layout">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forme Salle</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="container" style="padding: 3%">
+      <div class="card" >
+          <div class="card-header">
+              Form Salle
+          </div>
+          <div class="card-body">
+              <form th:action="@{http://localhost:8080/salle_place/addSalle}" th:method="post">
+                  <div th:object="${salle}">
+                      <div class="form-group">
+                          <input class="form-control" type="hidden" name="id" th:value="*{id}"/>
+                      </div>
+                      <div class="form-group">
+                          <label>Nom de la salle : </label>
+                          <input class="form-control" type="text" name="name" th:value="*{name}"/>
+                      </div>
+                      <div class="form-group">
+                          <label>Nombre de place : </label>
+                          <input class="form-control" type="text" name="nbrPlace" th:value="*{nbrPlace}"/>
+                      </div>
+                      <select class="form-control" th:field="*{cinema}">
+                          <option th:each="c:${cinemas}"  name="cinema" th:value="${c.id}" th:text="|${c.name}-${c.ville.name}|"></option>
+                      </select>
+                      <div style="padding: 3%">
+                          <button type="submit" class="btn btn-primary" >Valider</button>
+
+                      </div>
+                  </div>
+              </form>
+          </div>
+
+      </div>
+  </div>
+</div>
+</body>
+</html>

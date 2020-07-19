@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+      layout:decorator="layout">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projections Management</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container" style="padding: 3%">
+        <div class="card">
+            <div class="card-header">
+                Form Projection
+            </div>
+            <div class="card-body">
+                <form th:action="@{http://localhost:8080/ProjectionsManagement/add(nomCine=${nomCine})}" th:methode="post">
+                    <div th:object="${p}">
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" name="id" th:value="*{id}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Prix : </label>
+                            <input class="form-control" type="number" name="prix" th:value="*{prix}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Date Projection : </label>
+                            <input class="form-control" type="date" name="dateProjection" th:value="*{dateProjection}"/>
+                        </div>
+                        <label>Film : </label>
+                        <select class="form-control" th:field="*{film}">
+                            <option th:each="f:${films}"  name="film" th:value="${f.id}" th:text="${f.titre}"></option>
+                        </select>
+                        <label>Seance : </label>
+                        <select class="form-control" th:field="*{seance}">
+                            <option th:each="s:${seances}"  name="seance" th:value="${s.id}" th:text="${s.heureDebut}"></option>
+                        </select>
+                        <label>Salle : </label>
+                        <select class="form-control" th:field="*{salle}">
+                            <option th:each="s:${salles}"  name="salle" th:value="${s.id}" th:text="${s.name}"></option>
+                        </select>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Valider</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

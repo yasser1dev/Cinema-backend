@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+      layout:decorator="layout">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salles et Places</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="container" style="padding: 3%">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card" >
+                    <div class="card-header">
+                        List Salle
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <form th:method="get" th:action="@{http://localhost:8080/salle_place/all}">
+                                <div>
+                                    <label>Salle :</label>
+                                    <input type="text" name="mc" th:value="${mc}">
+                                    <button class="btn btn-primary">Chercher</button>
+                                </div>
+                            </form>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>SALLE</th>
+                                <th>CINEMA</th>
+                                <th>PLACES</th>
+                                <th>Delete</th>
+                                <th>Update</th>
+                                <th><a th:href="@{http://localhost:8080/salle_place/form}" class="btn btn-warning">Ajouter</a></th>
+
+                            </tr>
+                            <tr th:each="s:${salles}">
+                                <td th:text="${s.id}"></td>
+                                <td th:text="${s.name}"></td>
+                                <td th:text="${s.cinema.getName()}"></td>
+                                <td><a th:href="@{http://localhost:8080/salle_place/places(idSalle=${s.id},mc=${mc})}" class="btn btn-info">Show</a></td>
+                                <td><a th:href="@{http://localhost:8080/salle_place/delete(idSalle=${s.id},mc=${mc})}" class="btn btn-danger">Delete</a></td>
+                                <td><a  th:href="@{http://localhost:8080/salle_place/update(id=${s.id})}" class="btn btn-success">Update</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm" >
+                <div class="card" th:if="${showPlaces!=false}">
+                    <div class="card-header">
+                        <p th:text="|${nbrPlace} places|"></p>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th>ID</th>
+                                <th>N° place</th>
+                                <th>Delete</th>
+                                <th><a th:href="@{http://localhost:8080/salle_place/formPlace(idSalle=${idSalle})}" class="btn btn-warning">Ajouter</a></th>
+                            </tr>
+                            <tr th:each="p:${places}">
+                                <td th:text="${p.id}"></td>
+                                <td th:text="${p.numPlace}"></td>
+                                <td><a th:href="@{http://localhost:8080/salle_place/deletePlace(idSalle=${idSalle},idPlace=${p.id})}" class="btn btn-danger">Delete</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>layout</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{http://localhost:8080/CinemaManagement/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{http://localhost:8080/CinemaManagement/}">Cinémas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{http://localhost:8080/salle_place/}">Salles & Places</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{http://localhost:8080/FilmManagement/}">Films</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{http://localhost:8080/ProjectionsManagement/}">Projections</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@{http://localhost:8080/ticket}">Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  sec:authorize="isAuthenticated()" th:href="@{logout}">Log Out</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{login}">Log In</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<section layout:fragment="content">
+
+</section>
+<footer class="navbar-fixed-bottom"></footer>
+</body>
+</html>

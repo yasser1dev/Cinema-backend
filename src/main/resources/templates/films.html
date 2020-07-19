@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+      layout:decorator="layout">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container" style="padding: 3%">
+        <div class="card">
+            <div class="card-header">
+                List Films
+            </div>
+            <div class="card-body">
+                <form th:action="@{http://localhost:8080/FilmManagement/all}"method="get">
+                    <div>
+                        <label>Mot cle :</label>
+                        <input type="text" name="mc" th:value="${mc}">
+                        <button class="btn btn-primary">Chercher</button>
+                    </div>
+                </form>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Titre</th>
+                        <th>Realisateur</th>
+                        <th>Date Sortiele</th>
+                        <th>Description</th>
+                        <th>Duree</th>
+                        <th>Categorie</th>
+                        <th>Photo</th>
+                        <th><a th:href="@{http://localhost:8080/FilmManagement/form}" class="btn btn-warning">Ajouter</a></th>
+
+                    </tr>
+                    <tr th:each="f:${films}">
+                        <td th:text="${f.id}"></td>
+                        <td th:text="${f.titre}"></td>
+                        <td th:text="${f.realisateur}"></td>
+                        <td th:text="${f.dateSortie}"></td>
+                        <td th:text="${f.description}"></td>
+                        <td th:text="${f.duree}"></td>
+                        <td th:text="${f.categorie.getName()}"></td>
+                        <td><img th:src="@{http://localhost:8080/imageFilm/{id}(id=${f.id})}" width="100" height="200"></td>
+                        <td><a  th:href="@{http://localhost:8080/FilmManagement/delete(id=${f.id})}" class="btn btn-danger">Delete</a></td>
+                        <td><a th:href="@{http://localhost:8080/FilmManagement/updateForm(id=${f.id})}" class="btn btn-success">Update</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

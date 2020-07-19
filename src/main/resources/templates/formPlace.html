@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/Layout"
+      layout:decorator="layout">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forme Salle</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content" style="padding: 3%">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+               Ajouter une place
+            </div>
+            <div class="card-body">
+                <form th:action="@{http://localhost:8080/salle_place/addPlace(idSalle=${idSalle})}" th:method="post">
+
+                    <div th:object="${place}">
+                        <div class="form-group">
+                            <label>N° de la place : </label>
+                            <input class="form-control" type="number" name="numPlace" th:value="*{numPlace}"/>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
