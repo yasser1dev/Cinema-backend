@@ -16,7 +16,7 @@
                 Form Projection
             </div>
             <div class="card-body">
-                <form th:action="@{http://localhost:8080/ProjectionsManagement/add(nomCine=${nomCine})}" th:methode="post">
+                <form th:action="@{http://localhost:8080/ProjectionsManagement/add}" th:methode="get">
                     <div th:object="${p}">
                         <div class="form-group">
                             <input class="form-control" type="hidden" name="id" th:value="*{id}"/>
@@ -41,7 +41,7 @@
                         <select class="form-control" th:field="*{salle}">
                             <option th:each="s:${salles}"  name="salle" th:value="${s.id}" th:text="${s.name}"></option>
                         </select>
-                        <div>
+                        <div style="margin-top: 2%">
                             <button type="submit" class="btn btn-primary">Valider</button>
                         </div>
                     </div>
