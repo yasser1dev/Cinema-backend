@@ -68,10 +68,11 @@ public class ProjectionController {
     }
 
     @GetMapping("/updateForm")
-    public String updateFomr(Model model,@RequestParam(value = "id") Long id,
+    public String updateForm(Model model,@RequestParam(value = "id") Long id,
                              @RequestParam(value = "nomCine") String nomCine){
         model.addAttribute("p",projectionRepo.findById(id).get());
         model.addAttribute("films",filmRepo.findAll());
+
         model.addAttribute("seances",seanceRepo.findAll());
         model.addAttribute("salles",salleRepo.findByCinema_NameContains(nomCine));
         return "FormProjection";

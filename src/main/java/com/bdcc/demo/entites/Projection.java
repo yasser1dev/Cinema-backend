@@ -30,6 +30,7 @@ public class Projection implements Serializable {
     private Film film;
     @OneToMany(mappedBy = "place")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ToString.Exclude
     private Collection<Ticket> tickets;
     @ManyToOne
     private Seance seance;

@@ -32,11 +32,9 @@
                 <a class="nav-link" href="@{http://localhost:8080/ticket}">Tickets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"  sec:authorize="isAuthenticated()" th:href="@{logout}">Log Out</a>
+                <a class="nav-link"  sec:authorize="isAuthenticated()" th:href="@{http://localhost:8080/logout}">Log Out</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{login}">Log In</a>
-            </li>
+
         </ul>
     </nav>
 </header>
