@@ -57,12 +57,24 @@ public class ProjectionController {
 
     @GetMapping("/add")
     public String add(Projection projection){
-        Salle salle=salleRepo.findById(projection.getSalle().getId()).get();
-        salle.getProjections().add(projection);
-        salleRepo.save(salle);
+        if(projection.getId()==null){
+            Salle salle=salleRepo.findById(projection.getSalle().getId()).get();
+            salle.getProjections().add(projection);
+            salleRepo.save(salle);
+        }
         projectionRepo.save(projection);
 
         return "redirect:http://localhost:8080/ProjectionsManagement/all";
+    }
+
+    @GetMapping("/updateForm")
+    public String updateFomr(Model model,@RequestParam(value = "id") Long id,
+                             @RequestParam(value = "nomCine") String nomCine){
+        model.addAttribute("p",projectionRepo.findById(id).get());
+        model.addAttribute("films",filmRepo.findAll());
+        model.addAttribute("seances",seanceRepo.findAll());
+        model.addAttribute("salles",salleRepo.findByCinema_NameContains(nomCine));
+        return "FormProjection";
     }
 
 }

@@ -42,7 +42,7 @@
                                     <td th:text="|${p.prix} DH|"></td>
                                     <td th:text="${p.film.titre}"></td>
                                     <td th:text="${p.seance.heureDebut}"></td>
-                                    <td><a class="btn btn-success">Update</a></td>
+                                    <td><a th:href="@{http://localhost:8080/ProjectionsManagement/updateForm(id=${p.id},nomCine=${s.cinema.name})}" class="btn btn-success">Update</a></td>
                                     <td><a th:href="@{http://localhost:8080/ProjectionsManagement/delete(id=${p.id},mc=${mc})}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                             </table>
