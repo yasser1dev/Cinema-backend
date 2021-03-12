@@ -18,13 +18,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder password=passwordEncoder();
-        //auth.inMemoryAuthentication().withUser("yaz").password(password.encode("1234")).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("yaz").password(password.encode("1234")).roles("ADMIN");
         System.out.println(password.encode("123"));
-        auth.jdbcAuthentication()
+        /*auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT username as principal,password as credentials,active FROM users where username=?")
                 .authoritiesByUsernameQuery("select username as principal,role as role from users_roles where username=?")
-                .passwordEncoder(password);
+                .passwordEncoder(password);*/
     }
 
     protected void configure(HttpSecurity http) throws Exception {
