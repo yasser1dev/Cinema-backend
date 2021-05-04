@@ -6,4 +6,4 @@ phases:
       - mvn package
 artifacts:
   files:
-    - /target/*.jar
+    - target/demo-0.0.1-SNAPSHOT.jar
